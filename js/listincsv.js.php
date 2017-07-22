@@ -20,8 +20,7 @@ function exportTableToCSV($table, filename) {
 		return $cols.map(function(j, col) {
 			var $col = $(col),
 			text = $col.text().trim();
-			//$col.css('background-color','red');
-			//alert(i+' - '+j+' : '+text);
+			
 			// Spécifique pour "nettoyer" les données
 			// Si texte vide, on cherche une image et on prend le title
 			if(text == '' && $col.find('img').length > 0) {

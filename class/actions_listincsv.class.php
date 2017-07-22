@@ -63,6 +63,9 @@ class ActionsListInCSV
 	{
 		if (strpos($parameters['context'], 'list') !== false)
 		{
+			global $langs;
+			$langs->load('listincsv@listincsv');
+			
 			$pathtojs = dol_buildpath('/listincsv/js/listincsv.js.php',1);
 			$pathtoimg = dol_buildpath('/listincsv/img/listincsv.png',1);
 			//$pathtoimg = dol_buildpath('/theme/eldy/img/upload.png',1);
@@ -90,32 +93,39 @@ class ActionsListInCSV
 					
 					var $self = $(this);
 					
-					// Envoi de la requête HTTP en mode synchrone
-					$.ajax({
-						url: $form.attr('action'),
-						type: $form.attr('method'),
-						data: data,
-						async: false
-					}).done(function(html) {
-						// Récupération de la table html qui nous intéresse
-						var $table = $(html).find('table.liste');
-						
-						// Nettoyage de la table avant conversion en CSV
-						// Suppression de la 2ème ligne qui contient les filtres de la liste
-						$table.find('tr:eq(1)').remove();
-						// Suppression de la dernière colonne qui contient seulement les loupes des filtres
-						$table.find('th:last-child, td:last-child').remove();
-						// Suppression de la ligne TOTAL en pied de tableau
-						$table.find('tr.liste_total').remove();
-						// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
-						$table.find('td > table').map(function(i, cell) {
-							$cell = $(cell);
-							$cell.html($cell.text());
-						});
-						
-						// Transformation de la table liste en CSV + téléchargement
-						var args = [$table, 'export.csv'];
-						exportTableToCSV.apply($self, args);
+					$('#dialogforpopup').html('<?php echo ($langs->trans('FileGenerationInProgress')); ?>');
+					$('#dialogforpopup').dialog({
+						open : function(event, ui) {
+							// Envoi de la requête HTTP en mode synchrone
+							$.ajax({
+								url: $form.attr('action'),
+								type: $form.attr('method'),
+								data: data,
+								async: false
+							}).done(function(html) {
+								// Récupération de la table html qui nous intéresse
+								var $table = $(html).find('table.liste');
+								
+								// Nettoyage de la table avant conversion en CSV
+								// Suppression de la 2ème ligne qui contient les filtres de la liste
+								$table.find('tr:eq(1)').remove();
+								// Suppression de la dernière colonne qui contient seulement les loupes des filtres
+								$table.find('th:last-child, td:last-child').remove();
+								// Suppression de la ligne TOTAL en pied de tableau
+								$table.find('tr.liste_total').remove();
+								// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
+								$table.find('td > table').map(function(i, cell) {
+									$cell = $(cell);
+									$cell.html($cell.text());
+								});
+								
+								// Transformation de la table liste en CSV + téléchargement
+								var args = [$table, 'export.csv'];
+								exportTableToCSV.apply($self, args);
+								
+								$('#dialogforpopup').dialog('close');
+							});
+						}
 					});
 				});
 			});

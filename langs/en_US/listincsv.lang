@@ -7,3 +7,5 @@ ListInCSVSetup = List in CSV module setup
 ListInCSVAbout = About List in CSV
 
 NoSetupAvailable = No setup available. You can now dowload in CSV format any list from Dolibarr. An icon is available next to each list title.
+
+FileGenerationInProgress = CSV file generation in progress.

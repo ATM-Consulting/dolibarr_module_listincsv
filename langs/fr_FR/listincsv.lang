@@ -7,3 +7,5 @@ ListInCSVSetup = Configuration du module Liste en CSV
 ListInCSVAbout = A propos du module Liste en CSV
 
 NoSetupAvailable = Pas de configuration nécessaire. Une icône vous permettant de télécharger les listes dans un fichier CSV est maintenant disponible à côté du titre de chaque liste
+
+FileGenerationInProgress = Génération du fichier CSV en cours.
