@@ -79,10 +79,10 @@ class ActionsListInCSV
 			<script type="text/javascript" language="javascript">
 			
 			$(document).ready(function() {
-				$('div.titre').append('<?php echo $download; ?>');
+				$('div.fiche div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
 				$(".export").on('click', function(event) {
 					// Récupération des données du formulaire de filtre et transformation en objet
-					var $form = $('form[name="formfilter"]');
+					var $form = $('div.fiche form').first(); // Les formulaire de liste n'ont pas tous les même name
 					var data = objectifyForm($form.serializeArray());
 					
 					// Pas de limite, on veut télécharger la liste totale
