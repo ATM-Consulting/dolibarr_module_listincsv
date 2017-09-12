@@ -76,6 +76,9 @@ class ActionsListInCSV
 			
 			$download = $link . $img . $endlink;
 			
+			$socid = GETPOST('socid');
+			if(empty($socid)) $socid = 0;
+			
 			// Inclusion d'un JS qui va permettre de télécharger la liste
 			?>
 			<script type="text/javascript" language="javascript" src="<?php echo $pathtojs; ?>"></script>
@@ -90,6 +93,7 @@ class ActionsListInCSV
 					
 					// Pas de limite, on veut télécharger la liste totale
 					data.limit = 10000000;
+					data.socid = <?php echo $socid; ?>;
 					
 					var $self = $(this);
 					
