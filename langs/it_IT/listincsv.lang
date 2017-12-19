@@ -1,0 +1,12 @@
+Module104856Name = Elenco in CSV
+Module104856Desc = Aggiunge un icona per l'esportazione degli elenchi in formato CSV
+
+ATMAbout = Questo modulo è stato sviluppato da <a href="http://www.atm-consulting.fr" target="_blank">ATM Consulting</a><br>Ulteriore documentazione disponibile nel <a href="http://wiki.atm-consulting.fr/index.php/Accueil" target="_blank">wiki</a><br><br>
+Per domande e feedback contattateci a <a href="mailto:support@atm-consulting.fr">support@atm-consulting.fr</a><br><br>Per questioni commerciali contattateci a<a href="mailto:contact@atm-consulting.fr">contact@atm-consulting.fr</a> or at +33 9 77 19 50 70<br><br>Scoprite altri moduli sul <a href="http://www.dolistore.com/search.php?orderby=position&orderway=desc&search_query=atm&submit_search=Rechercher" target="_blank">Dolistore</a>
+
+ListInCSVSetup = Impostazioni modulo 
+ListInCSVAbout = A proposito del modulo Elenco in CSV
+
+NoSetupAvailable = Nessuna impostazione disponibile. È possibile scaricare in formato CSV ogni elenco di Dolibarr. Un'icona è disponibile al fianco di ogni titolo degli elenchi
+
+FileGenerationInProgress = Generazione file CSV in corso.
