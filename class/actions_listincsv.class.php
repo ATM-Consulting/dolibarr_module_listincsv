@@ -134,5 +134,6 @@ class ActionsListInCSV
 			</script>
 			<?php
 		}
+		return 0;
 	}
 }
