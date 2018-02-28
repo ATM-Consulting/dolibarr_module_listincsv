@@ -9,3 +9,4 @@ ListInCSVAbout = About List in CSV
 NoSetupAvailable = No setup available. You can now dowload in CSV format any list from Dolibarr. An icon is available next to each list title.
 
 FileGenerationInProgress = CSV file generation in progress.
+LISTINCSVExport=Allow user to export list in CSV
