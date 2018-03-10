@@ -9,11 +9,11 @@ function exportTableToCSV($table, filename) {
 	tmpRowDelim = String.fromCharCode(0), // null character
 
 	// actual delimiter characters for CSV format
-	colDelim = '";"', // CODE42 : Change coma to semicolon to match Excel default CSV format.
+	colDelim = '";"',
 	rowDelim = '"\r\n"',
 
 	// Grab text from table into CSV formatted string
-	csv = '\ufeff"' + $rows.map(function(i, row) { // CODE42 : Adding ‘\ufeff’ (BOM) at the start of csv to correctly export UTF-8 Chars.
+	csv = '\ufeff"' + $rows.map(function(i, row) {
 		var $row = $(row),
 		$cols = $row.find('th,td');
 
