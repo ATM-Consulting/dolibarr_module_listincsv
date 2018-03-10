@@ -9,11 +9,11 @@ function exportTableToCSV($table, filename) {
 	tmpRowDelim = String.fromCharCode(0), // null character
 
 	// actual delimiter characters for CSV format
-	colDelim = '","',
+	colDelim = '";"',
 	rowDelim = '"\r\n"',
 
 	// Grab text from table into CSV formatted string
-	csv = '"' + $rows.map(function(i, row) {
+	csv = '\ufeff"' + $rows.map(function(i, row) {
 		var $row = $(row),
 		$cols = $row.find('th,td');
 
