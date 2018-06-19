@@ -1,6 +1,6 @@
 // Function found here : https://stackoverflow.com/questions/16078544/export-to-csv-using-jquery-and-html
 function exportTableToCSV($table, filename) {
-					
+
 	var $rows = $table.find('tr:has(th),tr:has(td)'),
 
 	// Temporary delimiter characters unlikely to be typed by keyboard
@@ -9,18 +9,18 @@ function exportTableToCSV($table, filename) {
 	tmpRowDelim = String.fromCharCode(0), // null character
 
 	// actual delimiter characters for CSV format
-	colDelim = '","',
+	colDelim = '"<?php global $conf; echo (! empty($conf->global->IMPORT_CSV_SEPARATOR_TO_USE)?$conf->global->IMPORT_CSV_SEPARATOR_TO_USE:';')?>"',
 	rowDelim = '"\r\n"',
 
 	// Grab text from table into CSV formatted string
-	csv = '"' + $rows.map(function(i, row) {
+	csv = '\ufeff"' + $rows.map(function(i, row) {
 		var $row = $(row),
 		$cols = $row.find('th,td');
 
 		return $cols.map(function(j, col) {
 			var $col = $(col),
 			text = $col.text().trim();
-			
+
 			// Spécifique pour "nettoyer" les données
 			// Si texte vide, on cherche une image et on prend le title
 			if(text == '' && $col.find('img').length > 0) {
@@ -75,7 +75,7 @@ function exportTableToCSV($table, filename) {
 }
 
 //serialize data function
-function objectifyForm(formArray) { 
+function objectifyForm(formArray) {
 	var returnArray = {};
 	for (var i = 0; i < formArray.length; i++) {
 		returnArray[formArray[i]['name']] = formArray[i]['value'];
