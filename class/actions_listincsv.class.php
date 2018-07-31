@@ -87,7 +87,18 @@ class ActionsListInCSV
 				<script type="text/javascript" language="javascript">
 				
 				$(document).ready(function() {
-					$('div.fiche div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
+					<?php
+					// Case fo tesk list into project
+					if (strpos($parameters['context'], 'projecttasklist') !== false) {
+					?>
+						$('#id-right > form#searchFormList div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
+					<?php
+					} else {
+					?>
+						$('div.fiche div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
+					<?php
+					}
+					?>
 					$(".export").on('click', function(event) {
 						// Récupération des données du formulaire de filtre et transformation en objet
 						var $form = $('div.fiche form').first(); // Les formulaire de liste n'ont pas tous les même name
