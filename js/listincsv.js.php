@@ -1,3 +1,4 @@
+/*<script type="text/javascript">*/
 // Function found here : https://stackoverflow.com/questions/16078544/export-to-csv-using-jquery-and-html
 function exportTableToCSV($table, filename) {
 
@@ -18,9 +19,16 @@ function exportTableToCSV($table, filename) {
 		$cols = $row.find('th,td');
 
 		return $cols.map(function(j, col) {
-			var $col = $(col),
-			text = $col.text().trim();
-
+			var $col = $(col);
+			
+			var text = "";
+			if ($col.find("span.linkobject:not(.hideobject)").length > 0) {
+				// Fix sur liste produit si conf MAIN_DIRECT_STATUS_UPDATE active
+				text = $col.find("span.linkobject:not(.hideobject)").children().first().attr('title').trim();
+			} else {
+				text = $col.text().trim();
+			}
+			
 			// Spécifique pour "nettoyer" les données
 			// Si texte vide, on cherche une image et on prend le title
 			if(text == '' && $col.find('img').length > 0) {
