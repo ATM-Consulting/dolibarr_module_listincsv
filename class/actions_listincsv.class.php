@@ -63,7 +63,7 @@ class ActionsListInCSV
 	{
 		if (strpos($parameters['context'], 'list') !== false)
 		{
-			global $langs, $user;
+			global $langs, $user, $conf;
 			$langs->load('listincsv@listincsv');
 			
 			if(!empty($user->rights->listincsv->export)) {
@@ -133,8 +133,8 @@ class ActionsListInCSV
 									$table.find('th:last-child, td:last-child').remove();
 									
 									// Suppression de la ligne TOTAL en pied de tableau
-									$table.find('tr.liste_total').remove();
-									
+                                    <?php if(empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL)) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
+
 									// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
 									$table.find('td > table').map(function(i, cell) {
 										$cell = $(cell);
