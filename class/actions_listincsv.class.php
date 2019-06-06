@@ -130,7 +130,11 @@ class ActionsListInCSV
 									$table.find('tr:has(td.liste_titre)').remove(); // < 6.0
 									
 									// Suppression de la dernière colonne qui contient seulement les loupes des filtres
-									$table.find('th:last-child, td:last-child').remove();
+                                    $table.find('th:last-child, td:last-child').each(function(index){
+                                        $(this).find('dl').remove();
+                                       if($(this).closest('table').hasClass('liste')) $(this).remove();
+                                    });
+
 									
 									// Suppression de la ligne TOTAL en pied de tableau
                                     <?php if(empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL)) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
