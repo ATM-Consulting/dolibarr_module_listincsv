@@ -1,4 +1,7 @@
 /*<script type="text/javascript">*/
+<?php
+header('Content-Type: text/javascript');
+?>
 // Function found here : https://stackoverflow.com/questions/16078544/export-to-csv-using-jquery-and-html
 function exportTableToCSV($table, filename) {
 
