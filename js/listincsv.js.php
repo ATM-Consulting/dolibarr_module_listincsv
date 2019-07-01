@@ -28,9 +28,11 @@ function exportTableToCSV($table, filename) {
 			if ($col.find("span.linkobject:not(.hideobject)").length > 0) {
 				// Fix sur liste produit si conf MAIN_DIRECT_STATUS_UPDATE active
 				text = $col.find("span.linkobject:not(.hideobject)").children().first().attr('title').trim();
-			} else {
-				text = $col.text().trim();
-			}
+			} else if ($col.find('a').length > 0 && $col.find('a')[0].href.indexOf('mailto:') == 0) {
+				// Fix mails tronqués dans les listes par dol_trunc dans la fonction dol_print_email
+				link=$col.find('a')[0].href;
+				text = link.substr(7);
+			} else text = $col.text().trim();
 			
 			// Spécifique pour "nettoyer" les données
 			// Si texte vide, on cherche une image et on prend le title
@@ -89,7 +91,12 @@ function exportTableToCSV($table, filename) {
 function objectifyForm(formArray) {
 	var returnArray = {};
 	for (var i = 0; i < formArray.length; i++) {
-		returnArray[formArray[i]['name']] = formArray[i]['value'];
+		if (formArray[i]['name'].substring(formArray[i]['name'].length - 2) == "[]") {
+			var name = formArray[i]['name'].substring(0, formArray[i]['name'].length - 2);
+			if (!returnArray.hasOwnProperty(name)) returnArray[name] = [];
+			returnArray[name].push(formArray[i]['value']);
+		}
+		else returnArray[formArray[i]['name']] = formArray[i]['value'];
 	}
 	return returnArray;
 }

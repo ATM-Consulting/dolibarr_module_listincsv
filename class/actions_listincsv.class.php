@@ -63,7 +63,7 @@ class ActionsListInCSV
 	{
 		if (strpos($parameters['context'], 'list') !== false)
 		{
-			global $langs, $user;
+			global $langs, $user, $conf;
 			$langs->load('listincsv@listincsv');
 			
 			if(!empty($user->rights->listincsv->export)) {
@@ -107,9 +107,9 @@ class ActionsListInCSV
 						// Pas de limite, on veut télécharger la liste totale
 						data.limit = 10000000;
 						data.socid = <?php echo $socid; ?>;
-						
+
 						var $self = $(this);
-						
+
 						$('#dialogforpopup').html('<?php echo ($langs->trans('FileGenerationInProgress')); ?>');
 						$('#dialogforpopup').dialog({
 							open : function(event, ui) {
@@ -122,29 +122,33 @@ class ActionsListInCSV
 								}).done(function(html) {
 									// Récupération de la table html qui nous intéresse
 									var $table = $(html).find('table.liste');
-									
+
 									// Nettoyage de la table avant conversion en CSV
-									
+
 									// Suppression des filtres de la liste
 									$table.find('tr.liste_titre_filter').remove(); // >= 6.0
 									$table.find('tr:has(td.liste_titre)').remove(); // < 6.0
-									
+
 									// Suppression de la dernière colonne qui contient seulement les loupes des filtres
-									$table.find('th:last-child, td:last-child').remove();
-									
+                                    $table.find('th:last-child, td:last-child').each(function(index){
+                                        $(this).find('dl').remove();
+                                       if($(this).closest('table').hasClass('liste')) $(this).remove();
+                                    });
+
+
 									// Suppression de la ligne TOTAL en pied de tableau
-									$table.find('tr.liste_total').remove();
-									
+                                    <?php if(empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL)) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
+
 									// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
 									$table.find('td > table').map(function(i, cell) {
 										$cell = $(cell);
 										$cell.html($cell.text());
 									});
-									
+
 									// Transformation de la table liste en CSV + téléchargement
 									var args = [$table, 'export.csv'];
 									exportTableToCSV.apply($self, args);
-									
+
 									$('#dialogforpopup').dialog('close');
 								});
 							}
