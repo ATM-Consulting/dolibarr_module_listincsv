@@ -10,3 +10,4 @@ NoSetupAvailable = Pas de configuration nécessaire. Une icône vous permettant 
 
 FileGenerationInProgress = Génération du fichier CSV en cours.
 LISTINCSVExport=Permettre l'export des listes en CSV
+LISTINCSV_DELETESPACEFROMNUMBER=Supprimer les espaces contenus dans les nombres

@@ -65,27 +65,27 @@ class ActionsListInCSV
 		{
 			global $langs, $user, $conf;
 			$langs->load('listincsv@listincsv');
-			
+
 			if(!empty($user->rights->listincsv->export)) {
-			
+
 				$pathtojs = dol_buildpath('/listincsv/js/listincsv.js.php',1);
 				$pathtoimg = dol_buildpath('/listincsv/img/listincsv.png',1);
 				//$pathtoimg = dol_buildpath('/theme/eldy/img/upload.png',1);
-	
+
 				$link = '<a href="#" class="export" style="text-decoration: none;">';
 				$endlink = '</a>';
 				$img = ' <img src="'.$pathtoimg.'" style="vertical-align: middle;" width="20" />';
-				
+
 				$download = $link . $img . $endlink;
-				
+
 				$socid = GETPOST('socid');
 				if(empty($socid)) $socid = 0;
-				
+
 				// Inclusion d'un JS qui va permettre de télécharger la liste
 				?>
 				<script type="text/javascript" language="javascript" src="<?php echo $pathtojs; ?>"></script>
 				<script type="text/javascript" language="javascript">
-				
+
 				$(document).ready(function() {
 					<?php
 					// Case fo tesk list into project
@@ -103,7 +103,7 @@ class ActionsListInCSV
 						// Récupération des données du formulaire de filtre et transformation en objet
 						var $form = $('div.fiche form').first(); // Les formulaire de liste n'ont pas tous les même name
 						var data = objectifyForm($form.serializeArray());
-						
+
 						// Pas de limite, on veut télécharger la liste totale
 						data.limit = 10000000;
 						data.socid = <?php echo $socid; ?>;
@@ -139,6 +139,16 @@ class ActionsListInCSV
 									// Suppression de la ligne TOTAL en pied de tableau
                                     <?php if(empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL)) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
 
+									//Suppression des espaces pour les nombres
+									<?php if(!empty($conf->global->LISTINCSV_DELETESPACEFROMNUMBER)) { ?>
+
+									$table.find('td').each(function(e) {
+                                        let nbWthtSpace = $(this).text().replace(/ /g,'');
+                                        let commaToPoint = nbWthtSpace.replace(',', '.');
+                                        if($.isNumeric(commaToPoint)) $(this).html(nbWthtSpace);
+									});
+									<?php } ?>
+
 									// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
 									$table.find('td > table').map(function(i, cell) {
 										$cell = $(cell);
@@ -155,7 +165,7 @@ class ActionsListInCSV
 						});
 					});
 				});
-				
+
 				</script>
 				<?php
 			} // End Rights test
