@@ -83,7 +83,8 @@ function exportTableToCSV($table, filename) {
 			// Spécifique pour "nettoyer" les données
 			// Si texte vide, on cherche une image et on prend le title
 			if(text == '' && $col.find('img').length > 0) {
-				text = $col.find('img').attr('title').trim();
+				imgtitle = $col.find('img').attr('title');
+				if (imgtitle != undefined) text = imgtitle.trim();
 			}
 
 			return text.replace(/"/g, '""'); // escape double quotes
