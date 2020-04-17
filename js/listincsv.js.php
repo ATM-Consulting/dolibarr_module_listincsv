@@ -48,11 +48,23 @@ if (empty($dolibarr_nocache)) header('Cache-Control: max-age=3600, public, must-
 else header('Cache-Control: no-cache');
 ?>
 
+/**
+ * Returns a clone of the jquery collection $elem with all invisible (display:none) elements removed
+ * @param $elem  A jQuery collection
+ * @returns cloned jQuery collection
+ */
+function stripInvisible($elem) {
+	// https://stackoverflow.com/a/28963556/11987795
+	var $clone = $elem.clone();
+	$('body').append($clone);
+	$clone.find('*:not(:visible)').remove();
+	$clone.remove();
+	return $clone;
+}
+
 // Function found here : https://stackoverflow.com/questions/16078544/export-to-csv-using-jquery-and-html
 function exportTableToCSV($table, filename) {
-
-	var $rows = $table.find('tr:has(th),tr:has(td)'),
-
+	var $rows = stripInvisible($table).find('tr:has(th),tr:has(td)'),
 	// Temporary delimiter characters unlikely to be typed by keyboard
 	// This is to avoid accidentally splitting the actual contents
 	tmpColDelim = String.fromCharCode(11), // vertical tab character
