@@ -143,8 +143,7 @@ class ActionsListInCSV
 									<?php if(!empty($conf->global->LISTINCSV_DELETESPACEFROMNUMBER)) { ?>
 
 									$table.find('td').each(function(e) {
-                                        let nbWthtSpace = $(this).text().replace(/ /g,'');
-                                        nbWthtSpace.replace(/&nbsp;/g,'');
+                                        let nbWthtSpace = $(this).text().replace(/ /g,'').replace(/\xa0/g,'');
                                         let commaToPoint = nbWthtSpace.replace(',', '.');
                                         if($.isNumeric(commaToPoint)) $(this).html(nbWthtSpace);
 									});
