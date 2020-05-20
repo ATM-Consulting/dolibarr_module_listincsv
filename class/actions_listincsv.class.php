@@ -122,7 +122,7 @@ class ActionsListInCSV
 								}).done(function(html) {
 									// Récupération de la table html qui nous intéresse
 									var $table = $(html).find('table.liste');
-
+                                    let search = $table.find('tr.liste_titre_filter');
 									// Nettoyage de la table avant conversion en CSV
 
 									// Suppression des filtres de la liste
@@ -132,7 +132,7 @@ class ActionsListInCSV
 									// Suppression de la dernière colonne qui contient seulement les loupes des filtres
                                     $table.find('th:last-child, td:last-child').each(function(index){
                                         $(this).find('dl').remove();
-                                       if($(this).closest('table').hasClass('liste')) $(this).remove();
+                                       if($(search).length > 0 && $(this).closest('table').hasClass('liste')) $(this).remove(); //Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la derniere colonne
                                     });
 
 
