@@ -77,7 +77,6 @@ class ActionsListInCSV
 				$img = ' <img src="'.$pathtoimg.'" style="vertical-align: middle;" width="20" />';
 
 				$download = $link . $img . $endlink;
-
 				$socid = GETPOST('socid');
 				if(empty($socid)) $socid = 0;
 
@@ -95,7 +94,11 @@ class ActionsListInCSV
 					<?php
 					} else {
 					?>
-						$('div.fiche div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
+						if(typeof $('div.fiche div.titre').first().val() !== 'undefined') {
+							$('div.fiche div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
+						} else {
+							$('[name="button_search"]').after('<?php echo $download; ?>'); // S'il n'y a pas de titre, on l'ajoute à côté de la loupe c'est mieux que rien...
+						}
 					<?php
 					}
 					?>
