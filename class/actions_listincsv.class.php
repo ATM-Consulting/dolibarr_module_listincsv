@@ -86,25 +86,24 @@ class ActionsListInCSV
 				<script type="text/javascript" language="javascript">
 
 				$(document).ready(function() {
-					<?php
-					// Case fo tesk list into project
-					if (strpos($parameters['context'], 'projecttasklist') !== false) {
-					?>
-						$('#id-right > form#searchFormList div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
-					<?php
-					} else {
-					?>
-						if(typeof $('div.fiche div.titre').first().val() !== 'undefined') {
-							$('div.fiche div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
+					var search_button = $('[name="button_search"]');
+					if (search_button.length === 0) search_button = $('button.button_search');
+
+					if (search_button.length > 0) {
+						var list_title = search_button.closest('div.div-table-responsive table.liste').parent();
+						if (list_title.length === 0) list_title = search_button.closest('table.liste');
+						if (list_title.length > 0) list_title = list_title.closest(':has(table.table-fiche-title div.titre)').find('table.table-fiche-title div.titre');
+
+						if (list_title.length > 0) {
+							list_title.append('<?php echo $download; ?>'); // Si le titre de la liste dans la page est trouvé
 						} else {
-							$('[name="button_search"]').after('<?php echo $download; ?>'); // S'il n'y a pas de titre, on l'ajoute à côté de la loupe c'est mieux que rien...
+							search_button.append('<?php echo $download; ?>'); // S'il n'y a pas de titre, on l'ajoute à côté de la loupe c'est mieux que rien...
 						}
-					<?php
 					}
-					?>
+
 					$(".export").on('click', function(event) {
 						// Récupération des données du formulaire de filtre et transformation en objet
-						var $form = $('div.fiche form').first(); // Les formulaire de liste n'ont pas tous les même name
+						var $form = search_button.closest('form'); // Les formulaire de liste n'ont pas tous les même name
 						var data = objectifyForm($form.serializeArray());
 
 						// Pas de limite, on veut télécharger la liste totale
@@ -122,46 +121,50 @@ class ActionsListInCSV
 									type: $form.attr('method'),
 									data: data,
 									async: false
-								}).done(function(html) {
+								}).done(function(html) {console.log(html);
 									// Récupération de la table html qui nous intéresse
-									var $table = $(html).find('table.liste');
-                                    let search = $table.find('tr.liste_titre_filter');
-									// Nettoyage de la table avant conversion en CSV
+									var $html = $(html);
+									var search_button = $html.find('[name="button_search"]');
+									if (search_button.length === 0) search_button = $html.find('button.button_search');
+									if (search_button.length > 0) {
+										var $table = search_button.closest('table.liste');
+										let search = $table.find('tr.liste_titre_filter');
+										// Nettoyage de la table avant conversion en CSV
 
-									// Suppression des filtres de la liste
-									$table.find('tr.liste_titre_filter').remove(); // >= 6.0
-									$table.find('tr:has(td.liste_titre)').remove(); // < 6.0
+										// Suppression des filtres de la liste
+										$table.find('tr.liste_titre_filter').remove(); // >= 6.0
+										$table.find('tr:has(td.liste_titre)').remove(); // < 6.0
 
-									// Suppression de la dernière colonne qui contient seulement les loupes des filtres
-                                    $table.find('th:last-child, td:last-child').each(function(index){
-                                        $(this).find('dl').remove();
-                                       if($(search).length > 0 && $(this).closest('table').hasClass('liste')) $(this).remove(); //Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la derniere colonne
-                                    });
+										// Suppression de la dernière colonne qui contient seulement les loupes des filtres
+										$table.find('th:last-child, td:last-child').each(function (index) {
+											$(this).find('dl').remove();
+											if ($(search).length > 0 && $(this).closest('table').hasClass('liste')) $(this).remove(); //Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la derniere colonne
+										});
 
 
-									// Suppression de la ligne TOTAL en pied de tableau
-                                    <?php if(empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL)) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
+										// Suppression de la ligne TOTAL en pied de tableau
+										<?php if(empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL)) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
 
-									//Suppression des espaces pour les nombres
-									<?php if(!empty($conf->global->LISTINCSV_DELETESPACEFROMNUMBER)) { ?>
+										//Suppression des espaces pour les nombres
+										<?php if(!empty($conf->global->LISTINCSV_DELETESPACEFROMNUMBER)) { ?>
 
-									$table.find('td').each(function(e) {
-                                        let nbWthtSpace = $(this).text().replace(/ /g,'').replace(/\xa0/g,'');
-                                        let commaToPoint = nbWthtSpace.replace(',', '.');
-                                        if($.isNumeric(commaToPoint)) $(this).html(nbWthtSpace);
-									});
-									<?php } ?>
+										$table.find('td').each(function (e) {
+											let nbWthtSpace = $(this).text().replace(/ /g, '').replace(/\xa0/g, '');
+											let commaToPoint = nbWthtSpace.replace(',', '.');
+											if ($.isNumeric(commaToPoint)) $(this).html(nbWthtSpace);
+										});
+										<?php } ?>
 
-									// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
-									$table.find('td > table').map(function(i, cell) {
-										$cell = $(cell);
-										$cell.html($cell.text());
-									});
+										// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
+										$table.find('td > table').map(function (i, cell) {
+											$cell = $(cell);
+											$cell.html($cell.text());
+										});
 
-									// Transformation de la table liste en CSV + téléchargement
-									var args = [$table, 'export.csv'];
-									exportTableToCSV.apply($self, args);
-
+										// Transformation de la table liste en CSV + téléchargement
+										var args = [$table, 'export.csv'];
+										exportTableToCSV.apply($self, args);
+									}
 									$('#dialogforpopup').dialog('close');
 								});
 							}
