@@ -68,15 +68,12 @@ class ActionsListInCSV
 
 			if(!empty($user->rights->listincsv->export)) {
 
+				require_once __DIR__ . './../lib/listincsv.lib.php';
+
 				$pathtojs = dol_buildpath('/listincsv/js/listincsv.js.php',1);
-				$pathtoimg = dol_buildpath('/listincsv/img/listincsv.png',1);
-				//$pathtoimg = dol_buildpath('/theme/eldy/img/upload.png',1);
 
-				$link = '<a href="#" class="export" style="text-decoration: none;">';
-				$endlink = '</a>';
-				$img = ' <img src="'.$pathtoimg.'" style="vertical-align: middle;" width="20" />';
+				$download = getListInCSVDownloadLink();
 
-				$download = $link . $img . $endlink;
 				$socid = GETPOST('socid');
 				if(empty($socid)) $socid = 0;
 
@@ -102,7 +99,7 @@ class ActionsListInCSV
 					<?php
 					}
 					?>
-					$(".export").on('click', function(event) {
+					$(document).on('click', ".export", function(event) {
 						// Récupération des données du formulaire de filtre et transformation en objet
 						var $form = $('div.fiche form').first(); // Les formulaire de liste n'ont pas tous les même name
 						var data = objectifyForm($form.serializeArray());
@@ -116,9 +113,12 @@ class ActionsListInCSV
 						$('#dialogforpopup').html('<?php echo ($langs->trans('FileGenerationInProgress')); ?>');
 						$('#dialogforpopup').dialog({
 							open : function(event, ui) {
+								var used_url = $form.attr('data-listincsv-url');
+								if(typeof used_url === 'undefined') used_url = $form.attr('action');
+
 								// Envoi de la requête HTTP en mode synchrone
 								$.ajax({
-									url: $form.attr('action'),
+									url: used_url,
 									type: $form.attr('method'),
 									data: data,
 									async: false
