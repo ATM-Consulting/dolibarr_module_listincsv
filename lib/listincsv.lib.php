@@ -53,3 +53,16 @@ function listincsvAdminPrepareHead()
 
     return $head;
 }
+
+function getListInCSVDownloadLink() {
+
+	$pathtoimg = dol_buildpath('/listincsv/img/listincsv.png',1);
+	//$pathtoimg = dol_buildpath('/theme/eldy/img/upload.png',1);
+
+	$link = '<a href="#" class="export" style="text-decoration: none;">';
+	$endlink = '</a>';
+	$img = ' <img src="'.$pathtoimg.'" style="vertical-align: middle;" width="20" />';
+
+	return $link . $img . $endlink;
+
+}

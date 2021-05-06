@@ -1,0 +1,6 @@
+#Change Log
+
+## Unreleased
+
+- NEW : Déplacement du code qui crée le boutton vert "CSV" pour utilisation dans des modules externes avec un contexte ajax *06-05-2021* - 1.2.0
+- NEW : Ajout d'une gestion de récupération des informations via un autre paramètre que l'action du formulaire le plus proche *06-05-2021* - 1.1.0
