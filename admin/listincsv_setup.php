@@ -34,6 +34,7 @@ require_once '../lib/listincsv.lib.php';
 
 // Translations
 $langs->load("listincsv@listincsv");
+$db->begin();
 
 // Access control
 if (! $user->admin) {
