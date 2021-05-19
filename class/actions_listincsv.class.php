@@ -51,6 +51,25 @@ class ActionsListInCSV
 	}
 
 	/**
+	 * doActions
+	 *
+	 * @param   array()		 $parameters	 Hook metadatas (context, etc...)
+	 * @param   CommonObject	&$object		The object to process (an invoice if you are in invoice module, a propale in propale's module, etc...)
+	 * @param   string		  &$action		Current action (if set). Generally create or edit or null
+	 * @param   HookManager	 $hookmanager	Hook manager propagated to allow calling another hook
+	 * @return  int							 < 0 on error, 0 on success, 1 to replace standard code
+	 */
+	function doActions($parameters, &$object, &$action, $hookmanager) {
+
+		global $db, $user;
+
+		if(GETPOSTISSET('exportlistincsv', 'bool')) {
+			$object->call_trigger('LISTINCSV_EXPORT_FILE_'.strtoupper($object->element), $user);
+		}
+
+	}
+
+	/**
 	 * printCommonFooter
 	 *
 	 * @param   array()		 $parameters	 Hook metadatas (context, etc...)
@@ -107,6 +126,7 @@ class ActionsListInCSV
 						// Pas de limite, on veut télécharger la liste totale
 						data.limit = 10000000;
 						data.socid = <?php echo $socid; ?>;
+						data.exportlistincsv=1;
 
 						var $self = $(this);
 
