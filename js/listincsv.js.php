@@ -98,6 +98,10 @@ function exportTableToCSV($table, filename) {
 				imgtitle = $col.find('img').attr('title');
 				if (imgtitle != undefined) text = imgtitle.trim();
 			}
+			// si checkbox, on met 1 ou 0 selon qu’elle est cochée ou non
+			else if (text === '' && $col[0].firstChild.nodeName === 'INPUT' && $col[0].firstChild.type === 'checkbox') {
+				text = $col[0].firstChild.checked ? "1" : "0";
+			}
 
 			return text.replace(/"/g, '""'); // escape double quotes
 
