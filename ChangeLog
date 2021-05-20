@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- NEW : Déclenchement d'un trigger sur export d'un fichier avec listincsv *19-05-2021* 1.3.0
+
 ## 1.2
 - FIX : La liste ne s'exporte plus - *20/05/2021* - 1.2.4
 - FIX : Les champs de type "case à cocher" ne sont pas exportés - *17/05/2021* - 1.2.3
