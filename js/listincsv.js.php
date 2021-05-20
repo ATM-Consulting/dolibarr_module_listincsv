@@ -83,6 +83,7 @@ function exportTableToCSV($table, filename) {
 			var $col = $(col);
 
 			var text = "";
+			let $colFirstChild = $col.children().first();
 			if ($col.find("span.linkobject:not(.hideobject)").length > 0) {
 				// Fix sur liste produit si conf MAIN_DIRECT_STATUS_UPDATE active
 				text = $col.find("span.linkobject:not(.hideobject)").children().first().attr('title').trim();
@@ -99,8 +100,11 @@ function exportTableToCSV($table, filename) {
 				if (imgtitle != undefined) text = imgtitle.trim();
 			}
 			// si checkbox, on met 1 ou 0 selon qu’elle est cochée ou non
-			else if (text === '' && $col[0].firstChild.nodeName === 'INPUT' && $col[0].firstChild.type === 'checkbox') {
-				text = $col[0].firstChild.checked ? "1" : "0";
+			else if (text === ''
+				&& $colFirstChild.length
+				&& $colFirstChild.prop('nodeName') === 'INPUT'
+				&& $colFirstChild.prop('type') === 'checkbox') {
+				text = $colFirstChild.prop('checked') ? "1" : "0";
 			}
 
 			return text.replace(/"/g, '""'); // escape double quotes
