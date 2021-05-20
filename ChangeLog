@@ -3,6 +3,7 @@
 ## Unreleased
 
 ## 1.2
+- FIX : La liste ne s'exporte plus - *20/05/2021* - 1.2.4
 - FIX : Les champs de type "case à cocher" ne sont pas exportés - *17/05/2021* - 1.2.3
 - FIX : Suppression du dossier Box ainsi que tu fichier box *11/05/2021* - 1.2.2
 - FIX : $_SESSION devient newToken() *11/05/2021* - 1.2.1
