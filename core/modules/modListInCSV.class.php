@@ -44,7 +44,8 @@ class modListInCSV extends DolibarrModules
 
         $this->db = $db;
 
-		$this->editor_name = 'ATM-Consulting';
+		$this->editor_name = 'ATM Consulting';
+		$this->editor_url = 'https://www.atm-consulting.fr';
 		// Id for module (must be unique).
 		// Use here a free id (See in Home -> System information -> Dolibarr for list of used modules id).
 		$this->numero = 104856; // 104000 to 104999 for ATM CONSULTING
@@ -57,7 +58,7 @@ class modListInCSV extends DolibarrModules
 		// Module label (no space allowed), used if translation string 'ModuleXXXName' not found (where XXX is value of numeric property 'numero' of module)
 		$this->name = preg_replace('/^mod/i','',get_class($this));
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
-		$this->description = "Description of module ListInCSV";
+		$this->description = "ListInCSV permet d'exporter en CSV une liste Dolibarr telle qu'elle apparaît à l'écran.";
 		// Possible values for version are: 'development', 'experimental', 'dolibarr' or version
 		$this->version = '1.3.0';
 		// Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
