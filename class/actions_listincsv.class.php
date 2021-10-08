@@ -63,7 +63,7 @@ class ActionsListInCSV
 
 		global $db, $user;
 
-		if(GETPOSTISSET('exportlistincsv', 'bool')) {
+		if(GETPOSTISSET('exportlistincsv', 'bool') && method_exists($object, 'call_trigger')) {
 			$object->call_trigger('LISTINCSV_EXPORT_FILE_'.strtoupper($object->element), $user);
 		}
 
