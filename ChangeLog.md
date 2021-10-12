@@ -3,14 +3,15 @@
 ## Unreleased
 
 ## 1.3
-- NEW : Déclenchement d'un trigger sur export d'un fichier avec listincsv *19-05-2021* 1.3.0
+- FIX: Appel de `call_trigger()` sur un non-objet - *08/10/2021* - 1.3.1
+- NEW: Déclenchement d'un trigger sur export d'un fichier avec listincsv - *19/05/2021* - 1.3.0
 
 ## 1.2
-- FIX : La liste ne s'exporte plus - *20/05/2021* - 1.2.4
-- FIX : Les champs de type "case à cocher" ne sont pas exportés - *17/05/2021* - 1.2.3
-- FIX : Suppression du dossier Box ainsi que tu fichier box *11/05/2021* - 1.2.2
-- FIX : $_SESSION devient newToken() *11/05/2021* - 1.2.1
-- NEW : Déplacement du code qui crée le boutton vert "CSV" pour utilisation dans des modules externes avec un contexte ajax *06/05/2021* - 1.2.0
+- FIX: La liste ne s'exporte plus - *20/05/2021* - 1.2.4
+- FIX: Les champs de type "case à cocher" ne sont pas exportés - *17/05/2021* - 1.2.3
+- FIX: Suppression du dossier Box ainsi que tu fichier box *11/05/2021* - 1.2.2
+- FIX: $_SESSION devient newToken() *11/05/2021* - 1.2.1
+- NEW: Déplacement du code qui crée le boutton vert "CSV" pour utilisation dans des modules externes avec un contexte ajax *06/05/2021* - 1.2.0
 
 ## 1.1
-- NEW : Ajout d'une gestion de récupération des informations via un autre paramètre que l'action du formulaire le plus proche *06/05/2021* - 1.1.0
+- NEW: Ajout d'une gestion de récupération des informations via un autre paramètre que l'action du formulaire le plus proche *06/05/2021* - 1.1.0
