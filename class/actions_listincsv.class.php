@@ -80,7 +80,8 @@ class ActionsListInCSV
 	 */
 	function printCommonFooter($parameters, &$object, &$action, $hookmanager)
 	{
-		if (strpos($parameters['context'], 'list') !== false)
+		$TContext = explode(':', $parameters['context']);
+		if (in_array('list', $TContext) || in_array('stockatdate', $TContext))
 		{
 			global $langs, $user, $conf;
 			$langs->load('listincsv@listincsv');
