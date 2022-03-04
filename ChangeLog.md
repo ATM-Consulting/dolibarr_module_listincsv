@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 1.4
+- NEW: Include Dolibarr V13 stock to date - *28/02/2022* - 1.4.0
+
 ## 1.3
 - FIX: Appel de `call_trigger()` sur un non-objet - *08/10/2021* - 1.3.1
 - NEW: Déclenchement d'un trigger sur export d'un fichier avec listincsv - *19/05/2021* - 1.3.0
