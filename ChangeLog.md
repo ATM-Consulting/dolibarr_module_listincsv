@@ -3,6 +3,8 @@
 ## Unreleased
 
 ## 1.4
+
+- FIX: context detection - *15/03/2022* - 1.4.1
 - NEW: Include Dolibarr V13 stock to date - *28/02/2022* - 1.4.0
 
 ## 1.3
