@@ -1,6 +1,7 @@
 #Change Log
 
 ## Unreleased
+- NEW : Ajout de la class TechATM pour l'affichage de la page "A propos" *10/05/2022* 1.15.0
 
 ## 1.4
 - NEW: Include Dolibarr V13 stock to date - *28/02/2022* - 1.4.0
