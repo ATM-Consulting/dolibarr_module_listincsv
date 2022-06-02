@@ -61,9 +61,6 @@ class modListInCSV extends DolibarrModules
 		$this->description = "ListInCSV permet d'exporter en CSV une liste Dolibarr telle qu'elle apparaît à l'écran.";
 		// Possible values for version are: 'development', 'experimental', 'dolibarr' or version
 		$this->version = '1.5.0';
-		// Url to the file with your last numberversion of this module
-		require_once __DIR__ . '/../../class/techatm.class.php';
-		$this->url_last_version = \listincsv\TechATM::getLastModuleVersionUrl($this);
 		// Key used in llx_const table to save module status enabled/disabled (where MYMODULE is value of property name of module in uppercase)
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		// Where to store the module in setup page (0=common,1=interface,2=others,3=very specific)
