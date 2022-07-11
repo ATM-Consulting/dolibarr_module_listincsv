@@ -81,7 +81,8 @@ class ActionsListInCSV
 	function printCommonFooter($parameters, &$object, &$action, $hookmanager)
 	{
 		$TContext = explode(':', $parameters['context']);
-		if (strpos($parameters['context'], 'list') !== false || in_array('stockatdate', $TContext))
+		$context_list = preg_grep('/(.*list$)/i', $TContext);
+		if (!empty($context_list) || in_array('stockatdate', $TContext))
 		{
 			global $langs, $user, $conf;
 			$langs->load('listincsv@listincsv');
