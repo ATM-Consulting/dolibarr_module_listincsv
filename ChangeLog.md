@@ -4,6 +4,7 @@
 
 ## 1.4
 
+- FIX: Family name - *02/06/2022* - 1.4.3
 - FIX: Delete Trigger - *02/06/2022* - 1.4.2
 - FIX: context detection - *15/03/2022* - 1.4.1
 - NEW: Include Dolibarr V13 stock to date - *28/02/2022* - 1.4.0
