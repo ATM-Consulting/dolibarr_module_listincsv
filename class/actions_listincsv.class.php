@@ -82,6 +82,17 @@ class ActionsListInCSV
     {
         $TContext = explode(':', $parameters['context']);
         $context_list = preg_grep('/(.*list$)/i', $TContext);
+
+		// Gestion des objets référents produits
+		if(empty($context_list)) {
+			$context_list = preg_grep('/(productstats.*)/i', $TContext);
+		}
+
+		// Gestion des écrans objets référents tiers
+		if(empty($context_list)) {
+			$context_list = preg_grep('/(consumptionthirdparty)/i', $TContext);
+		}
+
         if (!empty($context_list) || in_array('stockatdate', $TContext))
         {
             global $langs, $user, $conf;
