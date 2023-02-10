@@ -2,8 +2,10 @@
 
 ## Unreleased
 
-- NEW : Ajout icône listincsv sur objets référents produit et tiers *07/02/2023* - 1.6.0
 
+## 1.6
+
+- NEW : Ajout icône listincsv sur objets référents produit et tiers *07/02/2023* - 1.6.0
 
 ## 1.5
 
