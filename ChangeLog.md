@@ -3,6 +3,10 @@
 ## Unreleased
 
 
+## 1.6
+
+- NEW : Ajout icône listincsv sur objets référents produit et tiers *07/02/2023* - 1.6.0
+
 ## 1.5
 
 - NEW : Ajout de la class TechATM pour l'affichage de la page "A propos" *10/05/2022* 1.15.0
