@@ -93,7 +93,7 @@ class ActionsListInCSV
 			$context_list = preg_grep('/(consumptionthirdparty)/i', $TContext);
 		}
 
-        if (!empty($context_list) || in_array('stockatdate', $TContext))
+        if (!empty($context_list) || in_array('stockatdate', $TContext) || in_array('thirdpartycustomerprice', $TContext))
         {
             global $langs, $user, $conf;
             $langs->load('listincsv@listincsv');
