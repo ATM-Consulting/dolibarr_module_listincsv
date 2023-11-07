@@ -93,7 +93,17 @@ class ActionsListInCSV
 			$context_list = preg_grep('/(consumptionthirdparty)/i', $TContext);
 		}
 
-        if (!empty($context_list) || in_array('stockatdate', $TContext))
+		// Gestion des écrans objets référents tiers
+		if(empty($context_list)) {
+			$context_list = preg_grep('/(stockatdate)/i', $TContext);
+		}
+
+		// Gestion des écrans objets référents tiers
+		if(empty($context_list)) {
+			$context_list = preg_grep('/(thirdpartycustomerprice)/i', $TContext);
+		}
+
+        if (!empty($context_list))
         {
             global $langs, $user, $conf;
             $langs->load('listincsv@listincsv');
