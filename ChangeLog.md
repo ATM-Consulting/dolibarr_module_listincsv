@@ -1,18 +1,19 @@
 #Change Log
 
 ## Unreleased
-- NEW : Ajout de la possibilité d'exporter la liste des prix clients  *07/10/2023* - 1.7.0
 
+
+
+## 1.7
+- NEW : Ajout de la possibilité d'exporter la liste des prix clients *07/10/2023* - 1.7.0
 
 ## 1.6
 - NEW : Ajout icône listincsv sur objets référents produit et tiers *07/02/2023* - 1.6.0
 
 ## 1.5
-
 - NEW : Ajout de la class TechATM pour l'affichage de la page "A propos" *10/05/2022* 1.15.0
 
 ## 1.4
-
 - FIX: Family name - *02/06/2022* - 1.4.3
 - FIX: Delete Trigger - *02/06/2022* - 1.4.2
 - FIX: context detection - *15/03/2022* - 1.4.1
