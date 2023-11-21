@@ -116,7 +116,7 @@ print '<td align="right" width="300">';
 print '<form method="POST" action="'.$_SERVER['PHP_SELF'].'">';
 print '<input type="hidden" name="token" value="'.newToken().'">';
 print '<input type="hidden" name="action" value="set_LISTINCSV_DELETESPACEFROMNUMBER">';
-print $form->selectyesno("LISTINCSV_DELETESPACEFROMNUMBER",$conf->global->LISTINCSV_DELETESPACEFROMNUMBER,1);
+print $form->selectyesno("LISTINCSV_DELETESPACEFROMNUMBER", getDolGlobalInt('LISTINCSV_DELETESPACEFROMNUMBER'),1);
 print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
 print '</form>';
 print '</td></tr>';
