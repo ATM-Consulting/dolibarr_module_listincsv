@@ -25,7 +25,7 @@ namespace listincsv;
  */
 
 
-if (file_exists(DOL_DOCUMENT_ROOT . 'htdocs/core/class/commonhookactions.class.php')){
+if (file_exists(DOL_DOCUMENT_ROOT . '/htdocs/core/class/commonhookactions.class.php')){
 
 	require_once DOL_DOCUMENT_ROOT . '/htdocs/core/class/commonhookactions.class.php';
 	/**

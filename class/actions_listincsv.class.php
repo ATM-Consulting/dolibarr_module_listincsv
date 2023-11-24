@@ -214,7 +214,7 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
                     });
 
                 </script>
-                <?php
+<?php
             } // End Rights test
         }
         return 0;
