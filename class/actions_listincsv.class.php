@@ -22,11 +22,12 @@
  * \brief   This file is an example hook overload class file
  *		  Put some comments here
  */
+require_once __DIR__ . '/../backport/v19/core/class/commonhookactions.class.php';
 
 /**
  * Class ActionsListInCSV
  */
-class ActionsListInCSV
+class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 {
     /**
      * @var array Hook results. Propagated to $hookmanager->resArray for later reuse
@@ -108,7 +109,7 @@ class ActionsListInCSV
             global $langs, $user, $conf;
             $langs->load('listincsv@listincsv');
 
-            if(!empty($user->rights->listincsv->export)) {
+            if(!empty($user->hasRight('listincsv', 'export'))) {
 
                 require_once __DIR__ . './../lib/listincsv.lib.php';
 
@@ -183,10 +184,10 @@ class ActionsListInCSV
 
 
                                         // Suppression de la ligne TOTAL en pied de tableau
-                                        <?php if(empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL)) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
+                                        <?php if(empty(getDolGlobalString('LISTINCSV_DONT_REMOVE_TOTAL'))) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
 
                                         //Suppression des espaces pour les nombres
-                                        <?php if(!empty($conf->global->LISTINCSV_DELETESPACEFROMNUMBER)) { ?>
+                                        <?php if(!empty(getDolGlobalString('LISTINCSV_DELETESPACEFROMNUMBER'))) { ?>
 
                                         $table.find('td').each(function(e) {
                                             let nbWthtSpace = $(this).text().replace(/ /g,'').replace(/\xa0/g,'');
@@ -213,7 +214,7 @@ class ActionsListInCSV
                     });
 
                 </script>
-                <?php
+<?php
             } // End Rights test
         }
         return 0;

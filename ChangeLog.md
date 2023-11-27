@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-
+## 1.8
+- FIX : Compat v19 et php8.2 *07/10/2023* - 1.8.0
 
 ## 1.7
 - NEW : Ajout de la possibilité d'exporter la liste des prix clients *07/10/2023* - 1.7.0

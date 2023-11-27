@@ -71,8 +71,8 @@ function exportTableToCSV($table, filename) {
 	tmpRowDelim = String.fromCharCode(0), // null character
 
 	// actual delimiter characters for CSV format
-	colDelim = '"<?php global $conf; echo (! empty($conf->global->EXPORT_CSV_SEPARATOR_TO_USE)?$conf->global->EXPORT_CSV_SEPARATOR_TO_USE:';')?>"',
-	rowDelim = '"\r\n"',
+        colDelim = '"<?php echo getDolGlobalString('EXPORT_CSV_SEPARATOR_TO_USE', ';') ?>"',
+	    rowDelim = '"\r\n"',
 
 	// Grab text from table into CSV formatted string
 	csv = '\ufeff"' + $rows.map(function(i, row) {
