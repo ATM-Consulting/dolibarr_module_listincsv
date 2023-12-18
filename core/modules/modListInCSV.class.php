@@ -60,7 +60,7 @@ class modListInCSV extends DolibarrModules
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = "ListInCSV permet d'exporter en CSV une liste Dolibarr telle qu'elle apparaît à l'écran.";
 		// Possible values for version are: 'development', 'experimental', 'dolibarr' or version
-		$this->version = '1.8.0';
+		$this->version = '1.8.1';
 
 		// Url to the file with your last numberversion of this module
 		require_once __DIR__ . '/../../class/techatm.class.php';
@@ -73,7 +73,7 @@ class modListInCSV extends DolibarrModules
 		// Name of image file used for this module.
 		// If file is in theme/yourtheme/img directory under name object_pictovalue.png, use this->picto='pictovalue'
 		// If file is in module/img directory under name object_pictovalue.png, use this->picto='pictovalue@module'
-		$this->picto='listincsv@listincsv';
+		$this->picto='modulelistincsv@listincsv';
 
 		// Defined all module parts (triggers, login, substitutions, menus, css, etc...)
 		// for default path (eg: /listincsv/core/xxxxx) (0=disable, 1=enable)
