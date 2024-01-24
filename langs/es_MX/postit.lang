@@ -1,47 +1,13 @@
-Module104852Name = PostIt
-Module104852Desc = Le permite dejar PostIts en el tablero u objetos
+Module104856Name = Lista en CSV
+Module104856Desc = Agrega un ícono que le permite descargar listas en formato CSV
 
-ATMAbout = Este módulo fue desarrollado por <a href="http://www.atm-consulting.fr" target="_blank">ATM Consulting</a><br>Puede encontrar la documentación en nuestro <a href = "http://wiki.atm-consulting.fr/index.php/Accueil" target="_blank">wiki</a><br><br>Para cualquier pregunta técnica o comentario, contáctenos en <a href= "mailto:support@atm-consulting.fr">support@atm-consulting.fr</a><br><br>Para cualquier pregunta comercial, contáctenos en <a href="mailto:contact@atm -consulting. fr">contact@atm-consulting.fr</a> o +33 9 77 19 50 70<br><br>Encuentre nuestros otros módulos en <a href="http://www.dolistore. com/search. php?orderby=position&orderway=desc&search_query=atm&submit_search=Search" target="_blank">Dolistore</a>
+ATMAbout = Este módulo fue desarrollado por <a href="http://www.atm-consulting.fr" target="_blank">ATM Consulting</a><br>Puede encontrar la documentación en nuestro <a href = "http://wiki.atm-consulting.fr/index.php/Accueil" target="_blank">wiki</a><br><br>Para cualquier pregunta técnica o comentario, contáctenos en <a href= "mailto:support@atm-consulting.fr">support@atm-consulting.fr</a><br><br>Para cualquier pregunta comercial, contáctenos en <a href="mailto:contact@atm -consulting. fr">contact@atm-consulting.fr</a> o +33 9 77 19 50 70<br><br>Encuentre nuestros otros módulos en <a href="http://www.dolistore.com/search.php?orderby=position&orderway=desc&search_query=atm&submit_search=Rechercher" target="_blank">Dolistore</a>
 
-PostItSetup = Configuración del módulo PostIt
-PostItAbout = Acerca del módulo Postit
-PostitUserParameters=Parámetros de usuario
+ListInCSVSetup = Configuración del módulo Lista en CSV
+ListInCSVAbout = Acerca del módulo Lista en CSV
 
-NewNote=Título de mi nota
-NoteComment=Descripción de la nota
-Read=Leer notas
-Write=Pegar, editar o responder a una nota
-Admin=Tiene todos los derechos sobre sus notas o las de otros
-NewResponse=Respuesta a la nota anterior
+NoSetupAvailable = No es necesaria ninguna configuración. Ahora está disponible un ícono junto al título de cada lista que le permite descargarla en un archivo CSV.
 
-PublicNote=Estado actual: público
-SharedNote=Estado actual: compartido
-PrivateNote=Estado actual: privado
-
-PublicNoteHelp=Estado actual: público, la nota sólo aparece en la tarjeta de este documento para todos los usuarios.
-SharedNoteHelp=Estado actual: compartido, la nota aparece para todos los registros (de este tipo de documento) y para todos los usuarios.
-PrivateNoteHelp=Estado actual: privado, la nota sólo aparece en la tarjeta de este documento y sólo es visible para usted.
-
-shortPublicNote=(estado público)
-shortSharedNote=(estado compartido)
-shortPrivateNote=(estado privado)
-
-AreYouSureYouWantToDeleteThisNote=¿Está seguro de que desea eliminar esta nota?
-
-private = privado
-public = público
-shared = compartido
-
-PostitList = Lista de PostIt
-Home = Inicio
-
-POSTIT_COLOR_PRIVATE=Color de fondo de una nota privada
-POSTIT_COLOR_PUBLIC=Color de fondo de una nota pública
-POSTIT_COLOR_SHARED=Color de fondo de una nota compartida
-AbricotNeedUpdate=Es necesario actualizar el módulo Apricot.
-NewStickyNote = Agregar una nueva nota
-POSTIT_MULTICOMPANY_SHARED=Compartir stick-its (estado: compartido y público) entre entidades
-POSTITSharing=Compartir Stick-its
-POSTITSharingDescription=Selección de entidades que compartirán sus stick-its (con estado compartido y público) con esta entidad.
-Stickit-Multicompany=Gestión de stick-its multiempresa
-FeatureAddedToMultiCompany=Los Stick-its ya no se comparten.<br>Ahora se puede acceder a compartir Stick-its (con estado compartido y público) entre entidades a través del módulo multiempresa y luego editando la entidad deseada.
+FileGenerationInProgress = Generación del archivo CSV en curso.
+LISTINCSVExport=Permitir exportación de listas en CSV
+LISTINCSV_DELETESPACEFROMNUMBER=Eliminar espacios contenidos en números
