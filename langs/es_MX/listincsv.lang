@@ -1,0 +1,13 @@
+Module104856Name = Lista en CSV
+Module104856Desc = Agrega un ícono que le permite descargar listas en formato CSV
+
+ATMAbout = Este módulo fue desarrollado por <a href="https://www.atm-consulting.fr" target="_blank">ATM Consulting</a><br>Puede encontrar la documentación en nuestro <a href = "https://wiki.atm-consulting.fr/index.php/Accueil" target="_blank">wiki</a><br><br>Para cualquier pregunta técnica o comentario, contáctenos en <a href= "mailto:support@atm-consulting.fr">support@atm-consulting.fr</a><br><br>Para cualquier pregunta comercial, contáctenos en <a href="mailto:contact@atm -consulting. fr">contact@atm-consulting.fr</a> o +33 9 77 19 50 70<br><br>Encuentre nuestros otros módulos en <a href="https://www.dolistore.com/search.php?orderby=position&orderway=desc&search_query=atm&submit_search=Rechercher" target="_blank">Dolistore</a>
+
+ListInCSVSetup = Configuración del módulo Lista en CSV
+ListInCSVAbout = Acerca del módulo Lista en CSV
+
+NoSetupAvailable = No es necesaria ninguna configuración. Ahora está disponible un ícono junto al título de cada lista que le permite descargarla en un archivo CSV.
+
+FileGenerationInProgress = Generación del archivo CSV en curso.
+LISTINCSVExport=Permitir exportación de listas en CSV
+LISTINCSV_DELETESPACEFROMNUMBER=Eliminar espacios contenidos en números
