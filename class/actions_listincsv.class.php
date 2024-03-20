@@ -103,6 +103,9 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 		if(empty($context_list)) {
 			$context_list = preg_grep('/(thirdpartycustomerprice)/i', $TContext);
 		}
+        if(empty($context_list)) {
+			$context_list = preg_grep('/(agefoddsessionsubscribers)/i', $TContext);
+		}
 
         if (!empty($context_list))
         {
@@ -131,6 +134,10 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
                         if (strpos($parameters['context'], 'projecttasklist') !== false) {
                         ?>
                         $('#id-right > form#searchFormList div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
+                        <?php
+                        } else if (strpos($parameters['context'], 'agefoddsessionsubscribers') !== false) {
+                        ?>
+                            $('div.fiche div.titre').eq(1).append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
                         <?php
                         } else {
                         ?>
