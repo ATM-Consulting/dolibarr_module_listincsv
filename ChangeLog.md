@@ -5,7 +5,7 @@
 
 
 ## release 1.8
-
+- FIX : object test  - *25/03/2024* - 1.8.3  
 - FIX : Compat agefodd session onglet participant sur tableau stagiaire *20/03/2024* - 1.8.2
 - FIX : Module logo Image *18/12/2023* - 1.8.1
 - FIX : Compat v19 et php8.2 *07/10/2023* - 1.8.0

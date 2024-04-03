@@ -64,7 +64,7 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 
         global $db, $user;
 
-        if(GETPOSTISSET('exportlistincsv', 'bool') && method_exists($object, 'call_trigger')) {
+        if(GETPOSTISSET('exportlistincsv', 'bool') && is_object($object) && method_exists($object, 'call_trigger')) {
             $object->call_trigger('LISTINCSV_EXPORT_FILE_'.strtoupper($object->element), $user);
         }
 
