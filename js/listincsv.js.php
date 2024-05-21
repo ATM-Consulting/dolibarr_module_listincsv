@@ -91,6 +91,9 @@ function exportTableToCSV($table, filename) {
 				// Fix mails tronqués dans les listes par dol_trunc dans la fonction dol_print_email
 				link=$col.find('a')[0].href;
 				text = link.substr(7);
+			} else if ($col.find('input').length > 0 && $col.find('input').prop('type') === 'text') {
+				// Fix DA024994 liste avec des inputs
+				text=$col.find('input').val();
 			} else text = $col.text().trim();
 
 			// Spécifique pour "nettoyer" les données
@@ -114,6 +117,7 @@ function exportTableToCSV($table, filename) {
 	}).get().join(tmpRowDelim)
 	.split(tmpRowDelim).join(rowDelim)
 	.split(tmpColDelim).join(colDelim) + '"';
+
 
 	// Deliberate 'false', see comment below
 	if (false && window.navigator.msSaveBlob) {

@@ -5,6 +5,7 @@
 
 
 ## release 1.8
+- FIX : DA024994 - Problème de sélection sur la liste des demandes de congés (car elle contient des valeurs dans des inputs) - *21/05/2024* - 1.8.4
 - FIX : object test  - *25/03/2024* - 1.8.3  
 - FIX : Compat agefodd session onglet participant sur tableau stagiaire *20/03/2024* - 1.8.2
 - FIX : Module logo Image *18/12/2023* - 1.8.1
