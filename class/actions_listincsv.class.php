@@ -96,42 +96,50 @@ class ActionsListInCSV
 				$socid = GETPOST('socid');
 				if(empty($socid)) $socid = 0;
 
+				$varsForJs = array(
+					'downloadButton' => $download,
+					'TContexts' => explode(':', $parameters['context']),
+					'socid' => $socid,
+					'langs' => array(
+						'FileGenerationInProgress' => $langs->trans('FileGenerationInProgress')
+					),
+					'conf' => array(
+						'LISTINCSV_DONT_REMOVE_TOTAL' => !empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL),
+						'LISTINCSV_DELETESPACEFROMNUMBER' => !empty($conf->global->LISTINCSV_DELETESPACEFROMNUMBER)
+					),
+				);
 				// Inclusion d'un JS qui va permettre de télécharger la liste
 				?>
 				<script type="text/javascript" language="javascript" src="<?php echo $pathtojs; ?>"></script>
 				<script type="text/javascript" language="javascript">
 
-				$(document).ready(function() {
-					<?php
-					// Case fo tesk list into project
-					if (strpos($parameters['context'], 'projecttasklist') !== false) {
-					?>
-						$('#id-right > form#searchFormList div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
-					<?php
+				const listInCSVMain = function(varsFromPHP) {
+					console.info('listInCSVMain', varsFromPHP);
+					if (varsFromPHP.TContexts.includes('projecttasklist')) {
+						$('#id-right > form#searchFormList div.titre').first().append(varsFromPHP.downloadButton); // Il peut y avoir plusieurs titre dans la page
 					} else {
-					?>
-						if(typeof $('div.fiche div.titre').first().val() !== 'undefined') {
-							$('div.fiche div.titre').first().append('<?php echo $download; ?>'); // Il peut y avoir plusieurs titre dans la page
+						const divTitre = $('div.fiche div.titre').first();
+						if(typeof divTitre.val() !== 'undefined') {
+							divTitre.append(varsFromPHP.downloadButton); // Il peut y avoir plusieurs titre dans la page
 						} else {
-							$('[name="button_search"]').after('<?php echo $download; ?>'); // S'il n'y a pas de titre, on l'ajoute à côté de la loupe c'est mieux que rien...
+							$('[name="button_search"]').after(varsFromPHP.downloadButton); // S'il n'y a pas de titre, on l'ajoute à côté de la loupe c'est mieux que rien...
 						}
-					<?php
 					}
-					?>
 					$(document).on('click', ".export", function(event) {
 						// Récupération des données du formulaire de filtre et transformation en objet
-						var $form = $('div.fiche form').first(); // Les formulaire de liste n'ont pas tous les même name
-						var data = objectifyForm($form.serializeArray());
+						const $form = $('div.fiche form').first(); // Les formulaire de liste n'ont pas tous les même name
+						const data = objectifyForm($form.serializeArray());
 
 						// Pas de limite, on veut télécharger la liste totale
 						data.limit = 10000000;
-						data.socid = <?php echo $socid; ?>;
+						data.socid = varsFromPHP.socid;
 						data.exportlistincsv=1;
 
-						var $self = $(this);
+						const $self = $(this);
+						const $dialogPopup = $('#dialogforpopup');
 
-						$('#dialogforpopup').html('<?php echo ($langs->trans('FileGenerationInProgress')); ?>');
-						$('#dialogforpopup').dialog({
+						$dialogPopup.html(varsFromPHP.langs['FileGenerationInProgress']);
+						$dialogPopup.dialog({
 							open : function(event, ui) {
 								var used_url = $form.attr('data-listincsv-url');
 								if(typeof used_url === 'undefined') used_url = $form.attr('action');
@@ -158,19 +166,19 @@ class ActionsListInCSV
                                        if($(search).length > 0 && $(this).closest('table').hasClass('liste')) $(this).remove(); //Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la derniere colonne
                                     });
 
-
 									// Suppression de la ligne TOTAL en pied de tableau
-                                    <?php if(empty($conf->global->LISTINCSV_DONT_REMOVE_TOTAL)) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
+									if (varsFromPHP.conf['LISTINCSV_DONT_REMOVE_TOTAL']) {
+										$table.find('tr.liste_total').remove();
+									}
 
 									//Suppression des espaces pour les nombres
-									<?php if(!empty($conf->global->LISTINCSV_DELETESPACEFROMNUMBER)) { ?>
-
-									$table.find('td').each(function(e) {
-                                        let nbWthtSpace = $(this).text().replace(/ /g,'').replace(/\xa0/g,'');
-                                        let commaToPoint = nbWthtSpace.replace(',', '.');
-                                        if($.isNumeric(commaToPoint)) $(this).html(nbWthtSpace);
-									});
-									<?php } ?>
+									if (varsFromPHP.conf['LISTINCSV_DELETESPACEFROMNUMBER']) {
+										$table.find('td').each(function(e) {
+											let nbWthtSpace = $(this).text().replace(/ /g,'').replace(/\xa0/g,'');
+											let commaToPoint = nbWthtSpace.replace(',', '.');
+											if($.isNumeric(commaToPoint)) $(this).html(nbWthtSpace);
+										});
+									}
 
 									// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
 									$table.find('td > table').map(function(i, cell) {
@@ -187,8 +195,9 @@ class ActionsListInCSV
 							}
 						});
 					});
-				});
+				};
 
+				$(document).ready(() => listInCSVMain(<?php echo json_encode($varsForJs) ?>));
 				</script>
 				<?php
 			} // End Rights test
