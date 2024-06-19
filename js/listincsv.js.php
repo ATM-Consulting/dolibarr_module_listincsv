@@ -19,8 +19,8 @@
  */
 
 /**
- * \file		htdocs/listincsv/js/lib_head.js.php
- * \brief		File that include javascript functions (included if option use_javascript activated)
+ * \file		listincsv/js/listincsv.js.php
+ * \brief		Functions for the Dolibarr module ListInCSV
  * 				JQuery (providing object $) and JQuery-UI (providing $datepicker) libraries must be loaded before this file.
  */
 
