@@ -1,8 +1,9 @@
 #Change Log
 
 ## Unreleased
-- NEW : DA025083 - Création d'un hook listInCSVFooterContext permettant à des modules externes d'utiliser ListInCSV. - *11/06/2024* - 1.9.0
 
+## release 1.9
+- NEW : DA025083 - Création d'un hook listInCSVFooterContext permettant à des modules externes d'utiliser ListInCSV. - *11/06/2024* - 1.9.0
 
 ## release 1.8
 - FIX : DA024994 - Problème de sélection sur la liste des demandes de congés (car elle contient des valeurs dans des inputs) - *21/05/2024* - 1.8.4
