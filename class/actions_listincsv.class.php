@@ -209,7 +209,7 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 										$table.find('tr:has(td.liste_titre)').remove(); // < 6.0
 
 										let extraslectorfilter = '';
-                                       <?php
+										<?php
 										if ($_SERVER['PHP_SELF']=='/accountancy/bookkeeping/listbyaccount.php') {
 										?>
 										extraslectorfilter = ':not(.tdforbreak)';
