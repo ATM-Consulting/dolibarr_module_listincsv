@@ -215,7 +215,7 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 										extraslectorfilter = ':not(.tdforbreak)';
 										<?php } ?>
 										// Suppression de la dernière colonne qui contient seulement les loupes des filtres
-										$table.find('th:last-child, td:last-child''+extraslectorfilter).each(function (index) {
+										$table.find('th:last-child, td:last-child'+extraslectorfilter).each(function (index) {
 											$(this).find('dl').remove();
 											if ($(search).length > 0 && $(this).closest('table').hasClass('liste')) $(this).remove(); //Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la derniere colonne
 										});
