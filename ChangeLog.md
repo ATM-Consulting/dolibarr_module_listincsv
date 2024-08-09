@@ -1,6 +1,7 @@
 #Change Log
 
 ## Unreleased
+- NEW : Nettoyage et compatibilité Dolibarr 20 - *02/08/2024* - 1.10.0
 
 ## release 1.9
 - NEW : DA025083 - Création d'un hook listInCSVFooterContext permettant à des modules externes d'utiliser ListInCSV. - *11/06/2024* - 1.9.0
