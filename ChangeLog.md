@@ -2,10 +2,13 @@
 
 ## Unreleased
 
+## 1.6
+
+- NEW : Ajout de la prise en charge des inputs lors de la conversion en .csv" *22/11/2024* 1.6.0
 
 ## 1.5
 
-- NEW : Ajout de la class TechATM pour l'affichage de la page "A propos" *10/05/2022* 1.15.0
+- NEW : Ajout de la class TechATM pour l'affichage de la page "A propos" *10/05/2022* 1.5.0
 
 ## 1.4
 

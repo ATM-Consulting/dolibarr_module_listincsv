@@ -91,7 +91,12 @@ function exportTableToCSV($table, filename) {
 				// Fix mails tronqués dans les listes par dol_trunc dans la fonction dol_print_email
 				link=$col.find('a')[0].href;
 				text = link.substr(7);
-			} else text = $col.text().trim();
+			} else if ($col.find("input").length > 0) {
+				// Nouvelle condition pour vérifier les inputs
+				text = $col.find("input").val().trim();
+			} else {
+				text = $col.text().trim();
+			}
 
 			// Spécifique pour "nettoyer" les données
 			// Si texte vide, on cherche une image et on prend le title
