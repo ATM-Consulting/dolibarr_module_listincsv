@@ -191,13 +191,24 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
                                         $table.find('tr:has(td.liste_titre)').remove(); // < 6.0
 
                                         // Suppression de la dernière colonne qui contient seulement les loupes des filtres
-                                        $table.find('th:last-child, td:last-child').each(function(index){
-                                            $(this).find('dl').remove();
-                                            if($(search).length > 0 && $(this).closest('table').hasClass('liste')) $(this).remove(); //Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la derniere colonne
-                                        });
+										<?php
+										if (!getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) { ?>
+											$table.find('th:last-child, td:last-child').each(function(index) {
+												$(this).find('dl').remove();
+												if ($(search).length > 0 && $(this).closest('table').hasClass('liste')) {
+													$(this).remove(); // Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la dernière colonne
+												}
+											});
+										<?php } else { ?>
+											$table.find('th:first-child, td:first-child').each(function(index) {
+												$(this).find('dl').remove();
+												if ($(search).length > 0 && $(this).closest('table').hasClass('liste')) {
+													$(this).remove(); // Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la dernière colonne
+												}
+											});
+										<?php } ?>
 
-
-                                        // Suppression de la ligne TOTAL en pied de tableau
+										// Suppression de la ligne TOTAL en pied de tableau
                                         <?php if(empty(getDolGlobalString('LISTINCSV_DONT_REMOVE_TOTAL'))) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
 
                                         //Suppression des espaces pour les nombres
