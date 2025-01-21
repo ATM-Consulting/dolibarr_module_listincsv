@@ -2,8 +2,11 @@
 
 ## Unreleased
 
+
 ## release 1.9
+- FIX : Add compatibility with conf MAIN_CHECKBOX_LEFT_COLUMN - *20/01/2024* - 1.9.2
 - FIX : COMPAT 21 - *10/12/2024* - 1.9.1
+- FIX : Nettoyage et compatibilité Dolibarr 20 - *02/08/2024* - 1.9.1
 - NEW : DA025083 - Création d'un hook listInCSVFooterContext permettant à des modules externes d'utiliser ListInCSV. - *11/06/2024* - 1.9.0
 
 ## release 1.8
