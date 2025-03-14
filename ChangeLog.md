@@ -5,7 +5,7 @@
 
 
 ## release 1.9
-- FIX : définission du chaine vide si aucun titre trouvé pour évité une erreur sur le trim - *14/03/2025* - 1.9.0
+- FIX : définission du chaine vide si aucun titre trouvé pour évité une erreur sur le trim - *14/03/2025* - 1.9.3
 - FIX : Add compatibility with conf MAIN_CHECKBOX_LEFT_COLUMN - *20/01/2024* - 1.9.2
 - FIX : COMPAT 21 - *10/12/2024* - 1.9.1
 - FIX : Nettoyage et compatibilité Dolibarr 20 - *02/08/2024* - 1.9.1
