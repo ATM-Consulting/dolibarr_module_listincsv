@@ -3,6 +3,7 @@
 ## Unreleased
 
 ## release 1.9
+- FIX : définission du chaine vide si aucun titre trouvé pour évité une erreur sur le trim - *14/03/2025* - 1.9.0
 - NEW : DA025083 - Création d'un hook listInCSVFooterContext permettant à des modules externes d'utiliser ListInCSV. - *11/06/2024* - 1.9.0
 
 ## release 1.8

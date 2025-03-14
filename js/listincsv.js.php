@@ -86,7 +86,7 @@ function exportTableToCSV($table, filename) {
 			let $colFirstChild = $col.children().first();
 			if ($col.find("span.linkobject:not(.hideobject)").length > 0) {
 				// Fix sur liste produit si conf MAIN_DIRECT_STATUS_UPDATE active
-				text = $col.find("span.linkobject:not(.hideobject)").children().first().attr('title').trim();
+				text = ($col.find("span.linkobject:not(.hideobject)").children().first().attr('title') || "").trim();
 			} else if ($col.find('a').length > 0 && $col.find('a')[0].href.indexOf('mailto:') == 0) {
 				// Fix mails tronqués dans les listes par dol_trunc dans la fonction dol_print_email
 				link=$col.find('a')[0].href;
