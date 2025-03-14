@@ -208,6 +208,7 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 										$table.find('tr.liste_titre_filter').remove(); // >= 6.0
 										$table.find('tr:has(td.liste_titre)').remove(); // < 6.0
 
+<<<<<<< HEAD
                                         // Suppression de la dernière colonne qui contient seulement les loupes des filtres
 										<?php
 										if (!getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) { ?>
@@ -227,6 +228,15 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 										<?php } ?>
 
 										// Suppression de la ligne TOTAL en pied de tableau
+                                        <?php if(empty(getDolGlobalString('LISTINCSV_DONT_REMOVE_TOTAL'))) { ?> $table.find('tr.liste_total').remove(); <?php } ?>
+=======
+										// Suppression de la dernière colonne qui contient seulement les loupes des filtres
+										$table.find('th:last-child, td:last-child').each(function (index) {
+											$(this).find('dl').remove();
+											if ($(search).length > 0 && $(this).closest('table').hasClass('liste')) $(this).remove(); //Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la derniere colonne
+										});
+
+										// Suppression de la ligne TOTAL en pied de tableau
 										if (varsFromPHP.conf['LISTINCSV_DONT_REMOVE_TOTAL']) {
 											$table.find('tr.liste_total').remove();
 										}
@@ -239,6 +249,7 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 												if ($.isNumeric(commaToPoint)) $(this).html(nbWthtSpace);
 											});
 										}
+>>>>>>> e6a2264ca38fab7af0f059d9d794f2bbddb6633c
 
 										// Remplacement des sous-table par leur valeur text(), notamment pour la ref dans les listes de propales, factures...
 										$table.find('td > table').map(function (i, cell) {
