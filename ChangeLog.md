@@ -1,9 +1,14 @@
 #Change Log
 
 ## Unreleased
-- NEW : Nettoyage et compatibilité Dolibarr 20 - *02/08/2024* - 1.10.0
+
+
 
 ## release 1.9
+- FIX : définition d'une valeur par défaut si aucun titre trouvé pour éviter une erreur sur la fonction trim - *14/03/2025* - 1.9.3
+- FIX : Add compatibility with conf MAIN_CHECKBOX_LEFT_COLUMN - *20/01/2024* - 1.9.2
+- FIX : COMPAT 21 - *10/12/2024* - 1.9.1
+- FIX : Nettoyage et compatibilité Dolibarr 20 - *02/08/2024* - 1.9.1
 - NEW : DA025083 - Création d'un hook listInCSVFooterContext permettant à des modules externes d'utiliser ListInCSV. - *11/06/2024* - 1.9.0
 
 ## release 1.8
