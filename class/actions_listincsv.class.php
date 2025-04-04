@@ -208,23 +208,32 @@ class ActionsListInCSV extends \listincsv\RetroCompatCommonHookActions
 										$table.find('tr.liste_titre_filter').remove(); // >= 6.0
 										$table.find('tr:has(td.liste_titre)').remove(); // < 6.0
 
+										let extraslectorfilter = '';
+										<?php
+										if ($_SERVER['PHP_SELF']=='/accountancy/bookkeeping/listbyaccount.php') {
+										?>
+										extraslectorfilter = ':not(.tdforbreak)';
+										<?php } ?>
+
                                         // Suppression de la dernière colonne qui contient seulement les loupes des filtres
 										<?php
 										if (!getDolGlobalString('MAIN_CHECKBOX_LEFT_COLUMN')) { ?>
-											$table.find('th:last-child, td:last-child').each(function(index) {
+											$table.find('th:last-child, td:last-child'+extraslectorfilter).each(function(index) {
 												$(this).find('dl').remove();
 												if ($(search).length > 0 && $(this).closest('table').hasClass('liste')) {
 													$(this).remove(); // Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la dernière colonne
 												}
 											});
 										<?php } else { ?>
-											$table.find('th:first-child, td:first-child').each(function(index) {
+											$table.find('th:first-child, td:first-child'+extraslectorfilter).each(function(index) {
 												$(this).find('dl').remove();
 												if ($(search).length > 0 && $(this).closest('table').hasClass('liste')) {
 													$(this).remove(); // Dans les listes ne contenant pas de recherche, il ne faut pas supprimer la dernière colonne
 												}
 											});
 										<?php } ?>
+
+
 
 										// Suppression de la ligne TOTAL en pied de tableau
 										if (varsFromPHP.conf['LISTINCSV_DONT_REMOVE_TOTAL']) {
