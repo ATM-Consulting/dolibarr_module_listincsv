@@ -5,6 +5,7 @@
 
 
 ## release 1.9
+- FIX : Warning Constant INC_FROM_DOLIBARR already defined - *18/08/2025* - 1.9.4
 - FIX : définition d'une valeur par défaut si aucun titre trouvé pour éviter une erreur sur la fonction trim - *14/03/2025* - 1.9.3
 - FIX : Add compatibility with conf MAIN_CHECKBOX_LEFT_COLUMN - *20/01/2024* - 1.9.2
 - FIX : COMPAT 21 - *10/12/2024* - 1.9.1
