@@ -60,7 +60,7 @@ class modListInCSV extends DolibarrModules
 		// Module description, used if translation string 'ModuleXXXDesc' not found (where XXX is value of numeric property 'numero' of module)
 		$this->description = "ListInCSV permet d'exporter en CSV une liste Dolibarr telle qu'elle apparaît à l'écran.";
 		// Possible values for version are: 'development', 'experimental', 'dolibarr' or version
-		$this->version = '1.9.3';
+		$this->version = '1.9.4';
 
 		// Url to the file with your last numberversion of this module
 		require_once __DIR__ . '/../../class/techatm.class.php';
@@ -264,7 +264,9 @@ class modListInCSV extends DolibarrModules
 	{
 		$sql = array();
 
-		define('INC_FROM_DOLIBARR',true);
+		if (!defined('INC_FROM_DOLIBARR')) {
+			define('INC_FROM_DOLIBARR', true);
+		}
 
 		dol_include_once('/listincsv/config.php');
 		dol_include_once('/listincsv/script/create-maj-base.php');
